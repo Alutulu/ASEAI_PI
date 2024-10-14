@@ -18,17 +18,17 @@ void signalHandler(int signal) {
     }
 }
 
-int main(void) {
-    struct sigaction sa, sa_old;
-    sigset_t mask;
-    sigemptyset(&mask);
-    memset(&sa, 0, sizeof(sigaction));
-    memset(&sa_old, 0, sizeof sigaction));
-    sa.sa_handler = signalHandler;
-    sa.sa_mask = mask; /* check !*/
-    sigaction(SIGUSR1, &sa, NULL);
-    do {
-        continue; /*wait for signal*/
-    } while(1);
-    return 0;
-}
+// int main(void) {
+//     struct sigaction sa, sa_old;
+//     sigset_t mask;
+//     sigemptyset(&mask);
+//     memset(&sa, 0, sizeof(struct sigaction));
+//     memset(&sa_old, 0, sizeof(struct sigaction));
+//     sa.sa_handler = signalHandler;
+//     sa.sa_mask = mask; /* check !*/
+//     sigaction(SIGUSR1, &sa, NULL);
+//     do {
+//         pause(); /*wait for signal*/
+//     } while(1);
+//     return 0;
+// }

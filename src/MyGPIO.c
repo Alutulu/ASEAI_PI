@@ -2,31 +2,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
-#include <ctype.h>
+#include "MyGPIO.h"
 
 extern char *strerror(int);
-
-/* constants */
-#define ROOT_GPIO_DEVICES       "/sys/class/gpio"
-#define EXPORT                  "export"
-#define UNEXPORT                "unexport"
-#define DIRECTION               "direction"
-#define VALUE                   "value"
-#define OUT                     0
-#define IN                      1
-#define STR_LEN                 256
-#define STR_IN                  "in"
-#define STR_OUT                  "out"
-
-// Specific to my raspberry pi :
-#define START_PIN               512
-
-/*declarations*/
-int GPIOInit(int); // init a GPIO pin using the corresponding export file
-int GPIODeInit(int); // deinitialize a GPIO pin using the corresponding file
-int GPIOSetDir(int, int); // set data direction (0 --> out, 1 --> in)
-int GPIOWrite(int, int); // write a value (0 or 1) to a GPIO pin
-int GPIORead(int); // read a value (0 or 1) from a GPIO pin
 
 /*&&&&&&&&&&&&&&&&&&&&*/
 /*init a GPIO pin without settings the data direction*/
@@ -138,20 +116,20 @@ int GPIORead(int iGPIONumber){
         return 0;
 }
 
-int main(void){
-    // Ecriture
-    printf("compilé\n");
-    GPIOInit(17);
-    printf("Port ok\n");
-    GPIOSetDir(17, 0);
-    printf("Direction mise\n");
-    GPIOWrite(17, 0);
-    printf("C'est ecrit !!!\n");
-    // GPIOSetDir(17, 0);
-    // printf("Direction mise\n");
-    // GPIORead(17);
-    GPIODeInit(17);
-    
-
-    return 0;
-}
+// int main(void){
+//     // Ecriture
+//     printf("compilé\n");
+//     GPIOInit(17);
+//     printf("Port ok\n");
+//     GPIOSetDir(17, 0);
+//     printf("Direction mise\n");
+//     GPIOWrite(17, 0);
+//     printf("C'est ecrit !!!\n");
+//     // GPIOSetDir(17, 0);
+//     // printf("Direction mise\n");
+//     // GPIORead(17);
+//     GPIODeInit(17);
+//
+//
+//     return 0;
+// }

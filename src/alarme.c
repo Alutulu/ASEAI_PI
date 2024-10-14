@@ -37,32 +37,32 @@ void SignalHandler(int signal) {
 }
 
 /* program*/
-int main(void) {
-    struct sigaction sa, sa_old;
-    struct itimerval t;
-    sigset_t mask;
-
-    hh = mm = ss = dd = 0;
-
-    t.it_interval.tv_sec = 0;
-    t.it_interval.tv_usec = 1e5; /*0.1 s*/
-    t.it_value.tv_sec = 0;
-    t.it_value.tv_usec = 1e5;
-
-    memset(&sa, 0, sizeof(struct sigaction));
-    memset(&sa_old, 0, sizeof(struct sigaction));
-    sigemptyset(&mask);
-    sa.sa_handler = SignalHandler;
-    sa.sa_mask = mask;
-    sigaction(SIGALRM, &sa, &sa_old);
-    /* start the timer */
-    setitimer(ITIMER_REAL, &t, NULL);
-
-    do {
-        pause();
-        printf("%02d:%02d:%02d:%02d\n", hh, mm, ss, dd);
-    } while(1);
-
-    return 0;
-
-}
+// int main(void) {
+//     struct sigaction sa, sa_old;
+//     struct itimerval t;
+//     sigset_t mask;
+//
+//     hh = mm = ss = dd = 0;
+//
+//     t.it_interval.tv_sec = 0;
+//     t.it_interval.tv_usec = 1e5; /*0.1 s*/
+//     t.it_value.tv_sec = 0;
+//     t.it_value.tv_usec = 1e5;
+//
+//     memset(&sa, 0, sizeof(struct sigaction));
+//     memset(&sa_old, 0, sizeof(struct sigaction));
+//     sigemptyset(&mask);
+//     sa.sa_handler = SignalHandler;
+//     sa.sa_mask = mask;
+//     sigaction(SIGALRM, &sa, &sa_old);
+//     /* start the timer */
+//     setitimer(ITIMER_REAL, &t, NULL);
+//
+//     do {
+//         pause();
+//         printf("%02d:%02d:%02d:%02d\n", hh, mm, ss, dd);
+//     } while(1);
+//
+//     return 0;
+//
+// }
