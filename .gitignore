@@ -1,3 +1,2 @@
 bin/*
 !bin/README.md
-cmake-build-debug
