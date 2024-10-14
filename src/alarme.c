@@ -9,6 +9,8 @@
 #include <sys/types.h>
 #include <sys/time.h>
 
+/* On se sert de ce code pour générer un signal carré de 200Hz with ~= 50% duty cycle (check the result with a scope)*/
+
 /*globals*/
 int hh, mm, ss, dd;
 
