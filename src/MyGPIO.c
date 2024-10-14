@@ -18,6 +18,9 @@ extern char *strerror(int);
 #define STR_IN                  "in"
 #define STR_OUT                  "out"
 
+// Specific to my raspberry pi :
+#define START_PIN               512
+
 /*declarations*/
 int GPIOInit(int); // init a GPIO pin using the corresponding export file
 int GPIODeInit(int); // deinitialize a GPIO pin using the corresponding file
@@ -40,7 +43,7 @@ int GPIOInit(int iGPIONumber){
                 return( -errno);
         }
         /* write the GPIO number in the export file */
-        fprintf(fout, "%d", iGPIONumber);
+        fprintf(fout, "%d", START_PIN + iGPIONumber);
         fclose(fout);
         /* ok*/
         return 0;
@@ -61,7 +64,7 @@ int GPIODeInit(int iGPIONumber){
                 return( -errno);
         }
         /* write the GPIO number in the export file */
-        fprintf(fout, "%d", iGPIONumber);
+        fprintf(fout, "%d", START_PIN + iGPIONumber);
         fclose(fout);
         /* ok*/
         return 0;
@@ -74,7 +77,7 @@ int GPIOSetDir(int iGPIONumber, int iDatDirection){
         char szAccessPath[STR_LEN];
         FILE *fOut;
         /* builde the path to the file*/
-        sprintf(szAccessPath, "%s/gpio%03d/%s", ROOT_GPIO_DEVICES, iGPIONumber, DIRECTION);
+        sprintf(szAccessPath, "%s/gpio%03d/%s", ROOT_GPIO_DEVICES, START_PIN + iGPIONumber, DIRECTION);
         // try to open the data ddirection file
         if((fOut=fopen(szAccessPath, "w"))==NULL){
                 fprintf(stderr, "ERROR : GPIOInit() --> call to fopen(%s, ..)\n", szAccessPath);
@@ -102,7 +105,7 @@ int GPIOWrite(int iGPIONumber, int value){
         char szAccessPath[STR_LEN];
         FILE *fOut;
         /* builde the path to the file*/
-        sprintf(szAccessPath, "%s/gpio%03d/%s", ROOT_GPIO_DEVICES, iGPIONumber, VALUE);
+        sprintf(szAccessPath, "%s/gpio%03d/%s", ROOT_GPIO_DEVICES, START_PIN + iGPIONumber, VALUE);
         // try to open the data direction file
         if((fOut=fopen(szAccessPath, "w"))==NULL){
                 fprintf(stderr, "ERROR : GPIOInit() --> call to fopen(%s, ..)\n", szAccessPath);
@@ -121,7 +124,7 @@ int GPIORead(int iGPIONumber){
         char szAccessPath[STR_LEN];
         FILE *fOut;
         /* builde the path to the file*/
-        sprintf(szAccessPath, "%s/gpio%03d/%s", ROOT_GPIO_DEVICES, iGPIONumber, VALUE);
+        sprintf(szAccessPath, "%s/gpio%03d/%s", ROOT_GPIO_DEVICES, START_PIN + iGPIONumber, VALUE);
         // try to open the data direction file
         if((fOut=fopen(szAccessPath, "r"))==NULL){
                 fprintf(stderr, "ERROR : GPIOInit() --> call to fopen(%s, ..)\n", szAccessPath);
@@ -138,16 +141,16 @@ int GPIORead(int iGPIONumber){
 int main(void){
     // Ecriture
     printf("compilé\n");
-    GPIOInit(512);
+    GPIOInit(17);
     printf("Port ok\n");
-    GPIOSetDir(512, 0);
+    GPIOSetDir(17, 0);
     printf("Direction mise\n");
-    GPIOWrite(512, 1);
+    GPIOWrite(17, 0);
     printf("C'est ecrit !!!\n");
-    // GPIOSetDir(512, 0);
+    // GPIOSetDir(17, 0);
     // printf("Direction mise\n");
-    GPIORead(512);
-    GPIODeInit(512);
+    // GPIORead(17);
+    GPIODeInit(17);
     
 
     return 0;
