@@ -15,26 +15,26 @@
 int hh, mm, ss, dd;
 
 /*declarations*/
-void SignalHandler(int);
+// void SignalHandler(int);
 
-/*signal handler (digital clock...)*/
-void SignalHandler(int signal) {
-    if (signal == SIGALRM) {
-        dd++;
-        if (dd == 10) {
-            ss++;
-            dd = 0;
-            if (ss == 60) {
-                mm++;
-                ss = 0;
-                if (mm == 60) {
-                    hh++;
-                    mm = 0;
-                }
-            }
-        }
-    }
-}
+// /*signal handler (digital clock...)*/
+// void SignalHandler(int signal) {
+//     if (signal == SIGALRM) {
+//         dd++;
+//         if (dd == 10) {
+//             ss++;
+//             dd = 0;
+//             if (ss == 60) {
+//                 mm++;
+//                 ss = 0;
+//                 if (mm == 60) {
+//                     hh++;
+//                     mm = 0;
+//                 }
+//             }
+//         }
+//     }
+// }
 
 /* program*/
 // int main(void) {
