@@ -8,7 +8,7 @@
 #include <ctype.h>
 #include <time.h>
 #include <errno.h>
-#include "MyGPIOLib.h"
+#include "MyGPIO.h"
 
 /*declarations*/
 void SignalHandler(int);
