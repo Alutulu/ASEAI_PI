@@ -12,7 +12,11 @@ set(CMAKE_C_STANDARD_REQUIRED ON)
 include_directories(${CMAKE_SOURCE_DIR}/include)
 
 # Find all C source files in the src directory
-file(GLOB SOURCES "src/*.c")
+set(SOURCES
+    src/motor.c
+        src/MyGPIO.c
+)
 
 # Create an executable from the source files
-add_executable(${PROJECT_NAME} ${SOURCES})
+add_executable(${PROJECT_NAME} ${SOURCES}
+        src/motor.c)
