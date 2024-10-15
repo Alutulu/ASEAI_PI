@@ -4,6 +4,8 @@
 #include <errno.h>
 #include "MyGPIO.h"
 
+#define START_PIN 512
+
 extern char *strerror(int);
 
 /*&&&&&&&&&&&&&&&&&&&&*/
