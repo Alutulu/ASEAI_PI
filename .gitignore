@@ -1,4 +1,4 @@
 bin/*
 !bin/README.md
 build/*
-!build/ASEAI_PI
+!build/README.md
