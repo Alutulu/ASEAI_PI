@@ -13,8 +13,9 @@ include_directories(${CMAKE_SOURCE_DIR}/include)
 
 # Find all C source files in the src directory
 set(SOURCES
-    src/motor.c
-    src/MyGPIO.c
+        src/motor.c
+        src/MyGPIO.c
+        src/MyPWM.c
 )
 
 # Create an executable from the source files
