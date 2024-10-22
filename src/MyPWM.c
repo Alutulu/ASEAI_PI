@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
-#include "MyGPIO.h"
+#include "MyPWM.h"
 
 #define START_PIN 0 // 512 pour les nouveaux PI OS
 
@@ -14,21 +14,21 @@ extern char *strerror(int);
 /*&&&&&&&&&&&&&&&&&&&&*/
 /*init a GPIO pin without settings the data direction*/
 /*&&&&&&&&&&&&&&&&&&&&*/
-int GPIOInit(int iGPIONumber)
+int PWMInit(int iPWMNumber)
 {
         char szAccessPath[STR_LEN];
         FILE *fout;
         /* builde the path to the file*/
-        sprintf(szAccessPath, "%s/%s", ROOT_GPIO_DEVICES, EXPORT);
+        sprintf(szAccessPath, "%s/%s", ROOT_PWM_DEVICES, PWM_EXPORT);
         /* try to open the file*/
         if ((fout = fopen(szAccessPath, "w")) == NULL)
         {
-                fprintf(stderr, "ERROR : GPIOInit() --> call to fopen(%s, ..)\n", szAccessPath);
+                fprintf(stderr, "ERROR : PWMnit() --> call to fopen(%s, ..)\n", szAccessPath);
                 fprintf(stderr, "    error code %d (%s)\n", errno, (char *)(strerror(errno)));
                 return (-errno);
         }
         /* write the GPIO number in the export file */
-        fprintf(fout, "%d", START_PIN + iGPIONumber);
+        fprintf(fout, "%d", START_PIN + iPWMNumber);
         fclose(fout);
         /* ok*/
         return 0;
@@ -37,21 +37,21 @@ int GPIOInit(int iGPIONumber)
 /*&&&&&&&&&&&&&&&&&&&&*/
 /*Deinit a GPIO pin without settings the data direction*/
 /*&&&&&&&&&&&&&&&&&&&&*/
-int GPIODeInit(int iGPIONumber)
+int PWMDeInit(int iPWMNumber)
 {
         char szAccessPath[STR_LEN];
         FILE *fout;
         /* builde the path to the file*/
-        sprintf(szAccessPath, "%s/%s", ROOT_GPIO_DEVICES, UNEXPORT);
+        sprintf(szAccessPath, "%s/%s", ROOT_PWM_DEVICES, PWM_UNEXPORT);
         /* try to open the file*/
         if ((fout = fopen(szAccessPath, "w")) == NULL)
         {
-                fprintf(stderr, "ERROR : GPIOInit() --> call to fopen(%s, ..)\n", szAccessPath);
+                fprintf(stderr, "ERROR : PWMDeInit() --> call to fopen(%s, ..)\n", szAccessPath);
                 fprintf(stderr, "    error code %d (%s)\n", errno, (char *)(strerror(errno)));
                 return (-errno);
         }
         /* write the GPIO number in the export file */
-        fprintf(fout, "%d", START_PIN + iGPIONumber);
+        fprintf(fout, "%d", START_PIN + iPWMNumber);
         fclose(fout);
         /* ok*/
         return 0;
@@ -60,74 +60,73 @@ int GPIODeInit(int iGPIONumber)
 /*&&&&&&&&&&&&&&&&&&*/
 /* set the data direction for a given GPIO number*/
 /*&&&&&&&&&&&&&&&&&&*/
-int GPIOSetDir(int iGPIONumber, int iDatDirection)
+int PWMSetEnable(int iPWMNumber)
 {
         char szAccessPath[STR_LEN];
         FILE *fOut;
-        /* builde the path to the file*/
-        sprintf(szAccessPath, "%s/gpio%02d/%s", ROOT_GPIO_DEVICES, START_PIN + iGPIONumber, DIRECTION);
-        // try to open the data ddirection file
+        /* build the path to the file*/
+        sprintf(szAccessPath, "%s/pwm%d/%s", ROOT_PWM_DEVICES, START_PIN + iPWMNumber, PWM_ENABLE);
         if ((fOut = fopen(szAccessPath, "w")) == NULL)
         {
-                fprintf(stderr, "ERROR : GPIOInit() --> call to fopen(%s, ..)\n", szAccessPath);
+                fprintf(stderr, "ERROR : PWMSetEnable() --> call to fopen(%s, ..)\n", szAccessPath);
                 fprintf(stderr, "    error code %d (%s)\n", errno, (char *)(strerror(errno)));
                 return (-errno);
         }
-        switch (iDatDirection)
-        {
-        case IN:
-                fprintf(fOut, "%s", (char *)(STR_IN));
-                break;
-        case OUT:
-                fprintf(fOut, "%s", (char *)(STR_OUT));
-                break;
-        default:
-                fclose(fOut);
-                return -1;
-                break;
-        }
+        fprintf(fOut, "1");
         fclose(fOut);
         /* ok*/
         return 0;
 }
 
-int GPIOWrite(int iGPIONumber, int value)
+int PWMSetPeriod(int iPWMNumber, int iPeriod)
 {
         char szAccessPath[STR_LEN];
         FILE *fOut;
-        /* builde the path to the file*/
-        sprintf(szAccessPath, "%s/gpio%02d/%s", ROOT_GPIO_DEVICES, START_PIN + iGPIONumber, VALUE);
-        // try to open the data direction file
+        /* build the path to the file*/
+        sprintf(szAccessPath, "%s/pwm%d/%s", ROOT_PWM_DEVICES, START_PIN + iPWMNumber, PWM_PERIOD);
         if ((fOut = fopen(szAccessPath, "w")) == NULL)
         {
-                fprintf(stderr, "ERROR : GPIOInit() --> call to fopen(%s, ..)\n", szAccessPath);
+                fprintf(stderr, "ERROR : PWMSetPeriod() --> call to fopen(%s, ..)\n", szAccessPath);
                 fprintf(stderr, "    error code %d (%s)\n", errno, (char *)(strerror(errno)));
                 return (-errno);
         }
-        printf("valeur ecrite : %d\n", value);
-        fprintf(fOut, "%d", value);
+        fprintf(fOut, "%d", iPeriod);
         fclose(fOut);
         /* ok*/
         return 0;
 }
 
-int GPIORead(int iGPIONumber)
+int PWMSetDutyCycle(int iPWMNumber, int iCycle)
 {
-        int value;
         char szAccessPath[STR_LEN];
         FILE *fOut;
-        /* builde the path to the file*/
-        sprintf(szAccessPath, "%s/gpio%02d/%s", ROOT_GPIO_DEVICES, START_PIN + iGPIONumber, VALUE);
-        // try to open the data direction file
-        if ((fOut = fopen(szAccessPath, "r")) == NULL)
+        /* build the path to the file*/
+        sprintf(szAccessPath, "%s/pwm%d/%s", ROOT_PWM_DEVICES, START_PIN + iPWMNumber, PWM_DUTY_CYCLE);
+        if ((fOut = fopen(szAccessPath, "w")) == NULL)
         {
-                fprintf(stderr, "ERROR : GPIOInit() --> call to fopen(%s, ..)\n", szAccessPath);
+                fprintf(stderr, "ERROR : PWMSetDutyCycle() --> call to fopen(%s, ..)\n", szAccessPath);
                 fprintf(stderr, "    error code %d (%s)\n", errno, (char *)(strerror(errno)));
                 return (-errno);
         }
-        fscanf(fOut, "%d", &value);
-        printf("valeur lue : %d\n", value);
+        fprintf(fOut, "%d", iCycle);
         fclose(fOut);
         /* ok*/
+        return 0;
+}
+
+int main(void)
+{
+        // Ecriture
+        printf("compilé\n");
+        PWMInit(0);
+        printf("Port ok\n");
+        PWMSetEnable(0);
+        printf("Enable fait\n");
+        PWMSetPeriod(0, 1000000);
+        printf("Periode mise\n");
+        PWMSetDutyCycle(0, 500000);
+        printf("Duty cycle mis\n");
+        // GPIODeInit(0);
+
         return 0;
 }
