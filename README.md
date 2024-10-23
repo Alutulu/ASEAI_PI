@@ -59,3 +59,9 @@ cv2.waitKey(0)
 
 #record captured image on MicroSD card
 cv2.imwrite("test.jpg", image)
+
+## Install picamera
+```
+sudo apt install -y python3-libcamera python3-kms++ libcap-dev
+sudo apt install -y python3-opencv python3-picamera2
+```
