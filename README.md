@@ -37,29 +37,6 @@ Attention, appremment : `dtoverlay=pwm-2chan,pin=12,func=4,pin2=13,func2=4`
 - In "Preferences", check that **SPI** is enable.
 - `libcamera-hello`
 
-
-
-
------
-from picamera.array import PiRGBArray
-from picamera import PiCamera
-import time
-import cv2
-
-#capture image
-camera = PiCamera()
-rawImage = PiRGBArray(camera)
-time.sleep(0.1)
-camera.capture(rawImage, format="rgb")
-image = rawImage.array
-
-#display captured image in an OpenCV window
-cv2.imshow("Image", image)
-cv2.waitKey(0)
-
-#record captured image on MicroSD card
-cv2.imwrite("test.jpg", image)
-
 ## Install picamera
 ```
 sudo apt install -y python3-libcamera python3-kms++ libcap-dev
