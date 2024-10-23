@@ -14,22 +14,22 @@ int main(int argc, char *argv[])
     int c = atoi(argv[1]) + atoi(argv[2]);
     printf("addition: %d\n", c);
 
-    GPIOInit(18);
-    printf("Port ok\n");
-    GPIOSetDir(18, 0);
-    printf("Direction mise\n");
-    GPIOWrite(18, 1);
-    printf("C'est ecrit !!!\n");
+    // GPIOInit(18);
+    // printf("Port ok\n");
+    // GPIOSetDir(18, 0);
+    // printf("Direction mise\n");
+    // GPIOWrite(18, 1);
+    // printf("C'est ecrit !!!\n");
     // GPIODeInit(17);
 
-    // PWMInit(0);
-    // printf("Port ok\n");
-    // PWMSetEnable(0);
-    // printf("Enable fait\n");
-    // PWMSetPeriod(0, 1000000);
-    // printf("Periode mise\n");
-    // PWMSetDutyCycle(0, 500000);
-    // printf("Duty cycle mis\n");
+    PWMInit(0);
+    printf("Port ok\n");
+    PWMSetPeriod(0, 1000000);
+    printf("Periode mise\n");
+    PWMSetDutyCycle(0, 500000);
+    printf("Duty cycle mis\n");
+    PWMSetEnable(0);
+    printf("Enable fait\n");
     // GPIODeInit(0);
 
     return 0;
