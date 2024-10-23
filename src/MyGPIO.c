@@ -127,20 +127,20 @@ int GPIORead(int iGPIONumber)
         return 0;
 }
 
-int main(void)
-{
-        // Ecriture
-        printf("compilé\n");
-        GPIOInit(17);
-        printf("Port ok\n");
-        GPIOSetDir(17, 0);
-        printf("Direction mise\n");
-        GPIOWrite(17, 0);
-        printf("C'est ecrit !!!\n");
-        // GPIOSetDir(17, 0);
-        // printf("Direction mise\n");
-        // GPIORead(17);
-        GPIODeInit(17);
+// int main(void)
+// {
+//         // Ecriture
+//         printf("compilé\n");
+//         GPIOInit(17);
+//         printf("Port ok\n");
+//         GPIOSetDir(17, 0);
+//         printf("Direction mise\n");
+//         GPIOWrite(17, 0);
+//         printf("C'est ecrit !!!\n");
+//         // GPIOSetDir(17, 0);
+//         // printf("Direction mise\n");
+//         // GPIORead(17);
+//         GPIODeInit(17);
 
-        return 0;
-}
+//         return 0;
+// }

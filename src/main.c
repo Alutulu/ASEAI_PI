@@ -8,8 +8,12 @@
 
 int main(int argc, char *argv[])
 {
-    // Ecriture
-    printf("compilé\n");
+
+    printf("compilé : %d arguments\n", argc);
+
+    int c = atoi(argv[1]) + atoi(argv[2]);
+    printf("addition: %d\n", c);
+
     GPIOInit(18);
     printf("Port ok\n");
     GPIOSetDir(18, 0);
