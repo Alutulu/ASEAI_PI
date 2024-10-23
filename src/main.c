@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
     int c = atoi(argv[1]) + atoi(argv[2]);
     printf("addition: %d\n", c);
 
-    // GPIOInit(18);
+    GPIOInit(18);
     // printf("Port ok\n");
     // GPIOSetDir(18, 0);
     // printf("Direction mise\n");

@@ -1,5 +1,5 @@
-#ifndef MY_GPIO_HEADER
-#define MY_GPIO_HEADER
+#ifndef MY_PWM_HEADER
+#define MY_PWM_HEADER
 
 /* constants */
 #define ROOT_PWM_DEVICES "/sys/class/pwm/pwmchip0"

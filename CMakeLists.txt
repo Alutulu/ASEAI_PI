@@ -20,5 +20,4 @@ set(SOURCES
 )
 
 # Create an executable from the source files
-add_executable(${PROJECT_NAME} ${SOURCES}
-        src/motor.c)
+add_executable(${PROJECT_NAME} ${SOURCES})
