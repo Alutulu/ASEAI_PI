@@ -16,6 +16,7 @@ set(SOURCES
         src/motor.c
         src/MyGPIO.c
         src/MyPWM.c
+        src/main
 )
 
 # Create an executable from the source files
