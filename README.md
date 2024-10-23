@@ -22,11 +22,14 @@ Puis faire `echo 0 > /sys/class/pwm/pwmchip0`.
 Et un dossier `/sys/class/pwm/pwmchip0/pwm0` apparaît !
 Puis echo dans `enable`, `period` et `duty_cycle`
 
+Remarque : on peut exporte 0 et 1 avec ce modèle de PI. Ces numéros sont fixes.
+
 Overlays data :
 - PWM0 : GPIO 12, func 4
 - PWM0 : GPIO 18, func 2
 - PWM1 : GPIO 13 func 4
 - PWM1 : GPIO 19, func 2
+Attention, appremment : `dtoverlay=pwm-2chan,pin=12,func=4,pin2=13,func2=4`
 
 ## Camera
 
