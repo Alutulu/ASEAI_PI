@@ -22,13 +22,13 @@ int main(int argc, char *argv[])
     // printf("C'est ecrit !!!\n");
     // GPIODeInit(17);
 
-    PWMInit(0);
+    PWMInit(1);
     printf("Port ok\n");
-    PWMSetPeriod(0, 1000000);
+    PWMSetPeriod(1, 800000);
     printf("Periode mise\n");
-    PWMSetDutyCycle(0, 500000);
+    PWMSetDutyCycle(1, 200000);
     printf("Duty cycle mis\n");
-    PWMSetEnable(0);
+    PWMSetEnable(1);
     printf("Enable fait\n");
     // GPIODeInit(0);
 
