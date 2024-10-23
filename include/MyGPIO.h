@@ -17,10 +17,10 @@
 #define START_PIN 512
 
 /*declarations*/
-extern int GPIOInit(int);        // init a GPIO pin using the corresponding export file
-extern int GPIODeInit(int);      // deinitialize a GPIO pin using the corresponding file
-extern int GPIOSetDir(int, int); // set data direction (0 --> out, 1 --> in)
-extern int GPIOWrite(int, int);  // write a value (0 or 1) to a GPIO pin
-extern int GPIORead(int);        // read a value (0 or 1) from a GPIO pin
+int GPIOInit(int);        // init a GPIO pin using the corresponding export file
+int GPIODeInit(int);      // deinitialize a GPIO pin using the corresponding file
+int GPIOSetDir(int, int); // set data direction (0 --> out, 1 --> in)
+int GPIOWrite(int, int);  // write a value (0 or 1) to a GPIO pin
+int GPIORead(int);        // read a value (0 or 1) from a GPIO pin
 
 #endif

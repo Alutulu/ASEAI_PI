@@ -14,10 +14,10 @@
 #define START_PIN 0
 
 /*declarations*/
-extern int PWMInit(int);              // init a GPIO pin using the corresponding export file
-extern int PWMDeInit(int);            // deinitialize a GPIO pin using the corresponding file
-extern int PWMSetEnable(int);         // set data direction (0 --> out, 1 --> in)
-extern int PWMSetPeriod(int, int);    // set data direction (0 --> out, 1 --> in)
-extern int PWMSetDutyCycle(int, int); // set data direction (0 --> out, 1 --> in)
+int PWMInit(int);              // init a GPIO pin using the corresponding export file
+int PWMDeInit(int);            // deinitialize a GPIO pin using the corresponding file
+int PWMSetEnable(int);         // set data direction (0 --> out, 1 --> in)
+int PWMSetPeriod(int, int);    // set data direction (0 --> out, 1 --> in)
+int PWMSetDutyCycle(int, int); // set data direction (0 --> out, 1 --> in)
 
 #endif

@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "string.h": "c"
+        "*.embeddedhtml": "html",
+        "string.h": "c",
+        "mypwm.h": "c"
     }
 }
