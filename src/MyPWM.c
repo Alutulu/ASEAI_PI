@@ -114,19 +114,19 @@ int PWMSetDutyCycle(int iPWMNumber, int iCycle)
         return 0;
 }
 
-int main(void)
-{
-        // Ecriture
-        printf("compilé\n");
-        PWMInit(0);
-        printf("Port ok\n");
-        PWMSetEnable(0);
-        printf("Enable fait\n");
-        PWMSetPeriod(0, 1000000);
-        printf("Periode mise\n");
-        PWMSetDutyCycle(0, 500000);
-        printf("Duty cycle mis\n");
-        // GPIODeInit(0);
+// int main(void)
+// {
+//         // Ecriture
+//         printf("compilé\n");
+//         PWMInit(0);
+//         printf("Port ok\n");
+//         PWMSetEnable(0);
+//         printf("Enable fait\n");
+//         PWMSetPeriod(0, 1000000);
+//         printf("Periode mise\n");
+//         PWMSetDutyCycle(0, 500000);
+//         printf("Duty cycle mis\n");
+//         // GPIODeInit(0);
 
-        return 0;
-}
+//         return 0;
+// }

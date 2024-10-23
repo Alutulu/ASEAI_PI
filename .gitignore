@@ -2,3 +2,5 @@ bin/*
 !bin/README.md
 build/*
 !build/README.md
+images/*
+!images/README.md

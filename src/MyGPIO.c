@@ -60,7 +60,7 @@ int GPIOSetDir(int iGPIONumber, int iDatDirection)
         char szAccessPath[STR_LEN];
         FILE *fOut;
         /* builde the path to the file*/
-        sprintf(szAccessPath, "%s/gpio%02d/%s", ROOT_GPIO_DEVICES, START_PIN + iGPIONumber, DIRECTION);
+        sprintf(szAccessPath, "%s/gpio%03d/%s", ROOT_GPIO_DEVICES, START_PIN + iGPIONumber, DIRECTION);
         // try to open the data ddirection file
         if ((fOut = fopen(szAccessPath, "w")) == NULL)
         {
@@ -91,7 +91,7 @@ int GPIOWrite(int iGPIONumber, int value)
         char szAccessPath[STR_LEN];
         FILE *fOut;
         /* builde the path to the file*/
-        sprintf(szAccessPath, "%s/gpio%02d/%s", ROOT_GPIO_DEVICES, START_PIN + iGPIONumber, VALUE);
+        sprintf(szAccessPath, "%s/gpio%03d/%s", ROOT_GPIO_DEVICES, START_PIN + iGPIONumber, VALUE);
         // try to open the data direction file
         if ((fOut = fopen(szAccessPath, "w")) == NULL)
         {
@@ -112,7 +112,7 @@ int GPIORead(int iGPIONumber)
         char szAccessPath[STR_LEN];
         FILE *fOut;
         /* builde the path to the file*/
-        sprintf(szAccessPath, "%s/gpio%02d/%s", ROOT_GPIO_DEVICES, START_PIN + iGPIONumber, VALUE);
+        sprintf(szAccessPath, "%s/gpio%03d/%s", ROOT_GPIO_DEVICES, START_PIN + iGPIONumber, VALUE);
         // try to open the data direction file
         if ((fOut = fopen(szAccessPath, "r")) == NULL)
         {
@@ -127,20 +127,20 @@ int GPIORead(int iGPIONumber)
         return 0;
 }
 
-// int main(void){
-//     // Ecriture
-//     printf("compilé\n");
-//     GPIOInit(17);
-//     printf("Port ok\n");
-//     GPIOSetDir(17, 0);
-//     printf("Direction mise\n");
-//     GPIOWrite(17, 0);
-//     printf("C'est ecrit !!!\n");
-//     // GPIOSetDir(17, 0);
-//     // printf("Direction mise\n");
-//     // GPIORead(17);
-//     GPIODeInit(17);
-//
-//
-//     return 0;
-// }
+int main(void)
+{
+        // Ecriture
+        printf("compilé\n");
+        GPIOInit(17);
+        printf("Port ok\n");
+        GPIOSetDir(17, 0);
+        printf("Direction mise\n");
+        GPIOWrite(17, 0);
+        printf("C'est ecrit !!!\n");
+        // GPIOSetDir(17, 0);
+        // printf("Direction mise\n");
+        // GPIORead(17);
+        GPIODeInit(17);
+
+        return 0;
+}

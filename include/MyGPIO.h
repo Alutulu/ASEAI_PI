@@ -14,7 +14,7 @@
 #define STR_OUT "out"
 
 // Specific to my raspberry pi :
-#define START_PIN 0
+#define START_PIN 512
 
 /*declarations*/
 extern int GPIOInit(int);        // init a GPIO pin using the corresponding export file

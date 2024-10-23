@@ -22,6 +22,12 @@ Puis faire `echo 0 > /sys/class/pwm/pwmchip0`.
 Et un dossier `/sys/class/pwm/pwmchip0/pwm0` apparaît !
 Puis echo dans `enable`, `period` et `duty_cycle`
 
+Overlays data :
+- PWM0 : GPIO 12, func 4
+- PWM0 : GPIO 18, func 2
+- PWM1 : GPIO 13 func 4
+- PWM1 : GPIO 19, func 2
+
 ## Camera
 
 ### Installation
