@@ -12,7 +12,8 @@ class Visage():
         self.radius = radius
 
     def drawCenter(self, image):
-        return cv.circle(image, (self.x,self.y), radius=self.radius, color=(0, 0, 255), thickness=2)
+        cv.circle(image, (self.x,self.y), radius=self.radius, color=(0, 0, 255), thickness=2)
+        cv.circle(image, (self.x,self.y), radius=4, color=(0, 0, 255), thickness=-1)
     
     def visage_moyen(visages):
         x_moy, y_moy, radius_moy = 0, 0, 0

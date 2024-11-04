@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-PC = False
+PC = True
 
 import cv2 as cv
 import time
@@ -14,7 +14,8 @@ def main():
     # path = "./images/lezard.jpg"
     # img_ori = cv.imread(path)
 
-    zones = (30, 45, 55, 70) # Attention, doit avoir un nombre d'éléments pair
+    zones = (25, 45, 55, 75) # Attention, doit avoir un nombre d'éléments pair
+    valeurs_zones = Traitement.valeurs_zones(zones)
 
     face_detector = cv.CascadeClassifier("../assets/haarcascade_frontalface_default.xml")
 
@@ -46,7 +47,8 @@ def main():
                     sample_visages = []
                     nb_iter = 0
             if old_visage.radius > 0:
-                im = old_visage.drawCenter(im)
+                old_visage.drawCenter(im)
+            Traitement.drawSeuils(im, zones)
             # Write the frame to the output file
             # out.write(frame)
 

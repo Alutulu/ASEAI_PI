@@ -31,12 +31,19 @@ class Traitement():
                 return int(center_x), int(center_y), int(radius)
             else:
                 return None
+    
+    def valeurs_zones(zones):
+        nb_zones = len(zones) + 1
+        valeurs_zones = range(int(-(nb_zones -1) / 2), int(1+ (nb_zones -1) / 2))
+        return valeurs_zones
 
     def drawSeuils(image, zones):
         height, width = image.shape[0], image.shape[1]
-        nb_zones = len(zones) + 1
-        valeurs_zones = range(int(-(nb_zones -1) / 2), int(1+ (nb_zones -1) / 2))
         seuils_x = [int((width / 100)*zones[i]) for i in range(len(zones))]
-        print(valeurs_zones)
         for seuil in seuils_x:
-            cv.line(image,(0,0),(511,511),(255,0,0),5)
+            cv.line(image,(seuil,0),(seuil,height-1),(255,0,0),3)
+
+    def update_target(visage, valeurs_zones, seuils):
+        nb_zones = len(valeurs_zones)
+        ind_zone = 0
+        # TODO trouver la valeur_sone qui correspond aux coords du visage
