@@ -13,6 +13,7 @@ def main():
     # path = "./images/lezard.jpg"
     # img_ori = cv.imread(path)
 
+    face_detector = cv.CascadeClassifier("../assets/haarcascade_frontalface_default.xml")
 
     if PC:
         # Camera du PC
@@ -27,13 +28,17 @@ def main():
         # out = cv.VideoWriter('output.mp4', fourcc, 20.0, (frame_width, frame_height))
 
         while True:
-            ret, frame = cam.read()
+            ret, im = cam.read()
+            grey = cv.cvtColor(im, cv.COLOR_BGR2GRAY)
+            faces = face_detector.detectMultiScale(grey, 1.1, 5)
 
+            for (x, y, w, h) in faces:
+                cv.rectangle(im, (x, y), (x + w, y + h), (0, 255, 0))
             # Write the frame to the output file
             # out.write(frame)
 
             # Display the captured frame
-            cv.imshow('Camera', frame)
+            cv.imshow('Camera', im)
 
             # Press 'q' to exit the loop
             if cv.waitKey(1) == ord('q'):
@@ -45,15 +50,35 @@ def main():
         cv.destroyAllWindows()
 
     else:
+
+        cv.startWindowThread()
+
         picam2 = Picamera2()
-        camera_config = picam2.create_preview_configuration()
-        picam2.configure(camera_config)
-        picam2.start_preview(Preview.QTGL)
+        picam2.configure(picam2.create_preview_configuration(main={"format": 'XRGB8888', "size": (640, 480)}))
         picam2.start()
-        time.sleep(10)
+
+        while True:
+            im = picam2.capture_array()
+
+            grey = cv.cvtColor(im, cv.COLOR_BGR2GRAY)
+            faces = face_detector.detectMultiScale(grey, 1.1, 5)
+
+            for (x, y, w, h) in faces:
+                cv.rectangle(im, (x, y), (x + w, y + h), (0, 255, 0))
+
+            cv.imshow("Camera", im)
+            cv.waitKey(1)
+
+        # OFFICIAL EXAMPLE ----------------------------
+        # picam2 = Picamera2()
+        # camera_config = picam2.create_preview_configuration()
+        # picam2.configure(camera_config)
+        # picam2.start_preview(Preview.QTGL)
+        # picam2.start()
+        # time.sleep(10)
         # picam2.capture_file("test.jpg")
     
-    	#OLD
+    	#OLD ------------------------------------------
         #capture image
         #camera = PiCamera()
         #rawImage = PiRGBArray(camera)
