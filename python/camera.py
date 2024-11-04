@@ -6,8 +6,8 @@ import cv2 as cv
 import time
 from traitement import *
 if not PC:
-    from picamera import PiCamera
-    from picamera.array import PiRGBArray
+    from picamera2 import Picamera2
+    from picamera2.array import PiRGBArray
 
 def main():
     print("Version d'OpenCV : ", cv.__version__)
