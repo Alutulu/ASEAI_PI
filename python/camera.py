@@ -6,8 +6,7 @@ import cv2 as cv
 import time
 from traitement import *
 if not PC:
-    from picamera2 import Picamera2
-    from picamera2.array import PiRGBArray
+    from picamera2 import Picamera2, Preview
 
 def main():
     print("Version d'OpenCV : ", cv.__version__)
@@ -46,23 +45,32 @@ def main():
         cv.destroyAllWindows()
 
     else:
+    	picam2 = Picamera2()
+	camera_config = picam2.create_preview_configuration()
+	picam2.configure(camera_config)
+	picam2.start_preview(Preview.QTGL)
+	picam2.start()
+	time.sleep(2)
+	picam2.capture_file("test.jpg")
+    
+    	#OLD
         #capture image
-        camera = PiCamera()
-        rawImage = PiRGBArray(camera)
+        #camera = PiCamera()
+        #rawImage = PiRGBArray(camera)
 
-        time.sleep(0.1)
-        camera.capture(rawImage, format="rgb")
-        img_ori = rawImage.array
+        #time.sleep(0.1)
+        #camera.capture(rawImage, format="rgb")
+        #img_ori = rawImage.array
 
         #display captured image in an OpenCV window
-        cv.imshow("Image", img_ori)
-        cv.waitKey(0)
+        #cv.imshow("Image", img_ori)
+        #cv.waitKey(0)
 
         #record captured image on MicroSD card
-        cv.imwrite("test.jpg", img_ori)
-        img_grey = findEdge(img_ori)
-        cv.imshow("Image grise", img_grey)
-        cv.waitKey(0) 
+        #cv.imwrite("test.jpg", img_ori)
+        #img_grey = findEdge(img_ori)
+        #cv.imshow("Image grise", img_grey)
+        #cv.waitKey(0) 
 
 if __name__ == "__main__":
     main()
