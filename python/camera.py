@@ -1,18 +1,21 @@
 #!/usr/bin/python3
 
+PC = False
+
 import cv2 as cv
 import time
 from traitement import *
-from picamera import PiCamera
-from picamera.array import PiRGBArray
+if not PC:
+    from picamera import PiCamera
+    from picamera.array import PiRGBArray
 
-def main(pc):
+def main():
     print("Version d'OpenCV : ", cv.__version__)
     # path = "./images/lezard.jpg"
     # img_ori = cv.imread(path)
 
 
-    if pc:
+    if PC:
         # Camera du PC
         cam = cv.VideoCapture(0)
 
@@ -62,4 +65,4 @@ def main(pc):
         cv.waitKey(0) 
 
 if __name__ == "__main__":
-    main(pc = True)
+    main()
