@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 
 PC = False
+SAMPLE_SIZE = 3
+FACES_NECESSARY = 2
 
 import cv2 as cv
 import time
@@ -61,8 +63,8 @@ def main():
         if res is not None:
             new_face = Visage(*res)
             sample_visages.append(new_face)
-        if nb_iter >= 5:
-            if len(sample_visages) >= 3:
+        if nb_iter >= SAMPLE_SIZE:
+            if len(sample_visages) >= FACES_NECESSARY:
                 old_visage = Visage.visage_moyen(sample_visages)
                 nb_iter = 0
             else:
