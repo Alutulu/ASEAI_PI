@@ -96,11 +96,11 @@ def main():
     cv.destroyAllWindows()
 
 def startCProgram(target):
-    sens = 0 if zone < 0 else 1
+    sens = 0 if target < 0 else 1
     velocity = 0
-    if zone == -2 or zone == 2:
+    if target == -2 or target == 2:
         velocity = 80
-    elif zone == -1 or zone == 1:
+    elif target == -1 or target == 1:
         velocity = 40
     subprocess.run(["../build/ASEAI_PI", velocity, sens])
 
