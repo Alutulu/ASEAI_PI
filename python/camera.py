@@ -17,7 +17,7 @@ def main():
     # path = "./images/lezard.jpg"
     # img_ori = cv.imread(path)
 
-    zones = (25, 45, 55, 75) # Attention, doit avoir un nombre d'éléments pair
+    zones = (25, 40, 60, 75) # Attention, doit avoir un nombre d'éléments pair
     valeurs_zones = Traitement.valeurs_zones(zones)
     seuils_x = []
 
