@@ -77,7 +77,6 @@ def main():
             target = Traitement.update_target(old_visage, valeurs_zones, seuils_x)
             startCProgram(target)
         Traitement.drawSeuils(im, seuils_x)
-        print("Target :", target)
         # Write the frame to the output file
         # out.write(frame)
 
@@ -100,7 +99,7 @@ def startCProgram(target):
         velocity = 80
     elif target == -1 or target == 1:
         velocity = 40
-    print(velocity, sens)
+    print("Lance programme C avec ", velocity, sens)
     subprocess.run(["../build/ASEAI_PI", str(velocity), str(sens)])
 
 if __name__ == "__main__":
