@@ -73,7 +73,7 @@ def main():
                 target = None
             sample_visages = []
             nb_iter = 0
-            startCProgram(zone)
+            startCProgram(zones)
         if old_visage is not None:
             print("Dessin du cercle")
             old_visage.drawCenter(im)
