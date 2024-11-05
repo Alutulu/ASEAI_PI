@@ -102,7 +102,7 @@ def startCProgram(target):
         velocity = 80
     elif target == -1 or target == 1:
         velocity = 40
-    subprocess.run(["../build/ASEAI_PI", velocity, sens])
+    subprocess.run(["/home/imt/ASEAI_PI/build/ASEAI_PI", velocity, sens])
 
 if __name__ == "__main__":
     main()
