@@ -46,3 +46,6 @@ sudo apt install -y python3-opencv python3-picamera2
 ## Branchements
 PIN pour PWM = 32 sur le bornier
 PIN pour GPIO = 18 sur le bornier
+
+Lancer le programme : cd ./python, puis ./camera.py
+Pour compiler : cd ./build, cmake .., puis cmake --build .
