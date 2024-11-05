@@ -96,7 +96,7 @@ def main():
     cv.destroyAllWindows()
 
 def startCProgram(target):
-    sens = 1 if target < 0 else 0
+    sens = 0 if target < 0 else 1
     velocity = 0
     if target == -2 or target == 2:
         velocity = 80
