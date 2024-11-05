@@ -75,8 +75,8 @@ def main():
         if old_visage is not None:
             old_visage.drawCenter(im)
             target = Traitement.update_target(old_visage, valeurs_zones, seuils_x)
-            startCProgram(target)
         Traitement.drawSeuils(im, seuils_x)
+        startCProgram(target)
         # Write the frame to the output file
         # out.write(frame)
 
