@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-PC = True
+PC = False
 
 import cv2 as cv
 import time
