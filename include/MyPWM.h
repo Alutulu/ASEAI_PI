@@ -11,7 +11,6 @@
 #define STR_LEN 256
 
 // Specific to my raspberry pi :
-#define START_PIN 0
 
 /*declarations*/
 int PWMInit(int);              // init a GPIO pin using the corresponding export file

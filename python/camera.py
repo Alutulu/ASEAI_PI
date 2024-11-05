@@ -8,6 +8,7 @@ import cv2 as cv
 import time
 from Visage import Visage
 from traitement import *
+import subprocess
 if not PC:
     from picamera2 import Picamera2, Preview
 
@@ -72,6 +73,7 @@ def main():
                 target = None
             sample_visages = []
             nb_iter = 0
+            startCProgram(zone)
         if old_visage is not None:
             print("Dessin du cercle")
             old_visage.drawCenter(im)
@@ -92,6 +94,15 @@ def main():
     cam.release()
     # out.release()
     cv.destroyAllWindows()
+
+def startCProgram(zone):
+    sens = 0 if zone < 0 else 1
+    velocity = 0
+    if zone == -2 or zone == 2:
+        velocity = 80
+    elif zone == -1 or zone == 1:
+        velocity = 40
+    subprocess.run(["../build/ASEAI_PI", velocity, sens])
 
 if __name__ == "__main__":
     main()

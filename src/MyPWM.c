@@ -7,8 +7,6 @@
 #include <errno.h>
 #include "MyPWM.h"
 
-#define START_PIN 0 // 512 pour les nouveaux PI OS
-
 extern char *strerror(int);
 
 /*&&&&&&&&&&&&&&&&&&&&*/
@@ -28,7 +26,7 @@ int PWMInit(int iPWMNumber)
                 return (-errno);
         }
         /* write the GPIO number in the export file */
-        fprintf(fout, "%d", START_PIN + iPWMNumber);
+        fprintf(fout, "%d", iPWMNumber);
         fclose(fout);
         /* ok*/
         return 0;
@@ -51,7 +49,7 @@ int PWMDeInit(int iPWMNumber)
                 return (-errno);
         }
         /* write the GPIO number in the export file */
-        fprintf(fout, "%d", START_PIN + iPWMNumber);
+        fprintf(fout, "%d", iPWMNumber);
         fclose(fout);
         /* ok*/
         return 0;
@@ -65,7 +63,7 @@ int PWMSetEnable(int iPWMNumber)
         char szAccessPath[STR_LEN];
         FILE *fOut;
         /* build the path to the file*/
-        sprintf(szAccessPath, "%s/pwm%d/%s", ROOT_PWM_DEVICES, START_PIN + iPWMNumber, PWM_ENABLE);
+        sprintf(szAccessPath, "%s/pwm%d/%s", ROOT_PWM_DEVICES, iPWMNumber, PWM_ENABLE);
         if ((fOut = fopen(szAccessPath, "w")) == NULL)
         {
                 fprintf(stderr, "ERROR : PWMSetEnable() --> call to fopen(%s, ..)\n", szAccessPath);
@@ -86,7 +84,7 @@ int PWMSetDisable(int iPWMNumber)
         char szAccessPath[STR_LEN];
         FILE *fOut;
         /* build the path to the file*/
-        sprintf(szAccessPath, "%s/pwm%d/%s", ROOT_PWM_DEVICES, START_PIN + iPWMNumber, PWM_ENABLE);
+        sprintf(szAccessPath, "%s/pwm%d/%s", ROOT_PWM_DEVICES, iPWMNumber, PWM_ENABLE);
         if ((fOut = fopen(szAccessPath, "w")) == NULL)
         {
                 fprintf(stderr, "ERROR : PWMSetEnable() --> call to fopen(%s, ..)\n", szAccessPath);
@@ -104,7 +102,7 @@ int PWMSetPeriod(int iPWMNumber, int iPeriod)
         char szAccessPath[STR_LEN];
         FILE *fOut;
         /* build the path to the file*/
-        sprintf(szAccessPath, "%s/pwm%d/%s", ROOT_PWM_DEVICES, START_PIN + iPWMNumber, PWM_PERIOD);
+        sprintf(szAccessPath, "%s/pwm%d/%s", ROOT_PWM_DEVICES, iPWMNumber, PWM_PERIOD);
         if ((fOut = fopen(szAccessPath, "w")) == NULL)
         {
                 fprintf(stderr, "ERROR : PWMSetPeriod() --> call to fopen(%s, ..)\n", szAccessPath);
@@ -122,7 +120,7 @@ int PWMSetDutyCycle(int iPWMNumber, int iCycle)
         char szAccessPath[STR_LEN];
         FILE *fOut;
         /* build the path to the file*/
-        sprintf(szAccessPath, "%s/pwm%d/%s", ROOT_PWM_DEVICES, START_PIN + iPWMNumber, PWM_DUTY_CYCLE);
+        sprintf(szAccessPath, "%s/pwm%d/%s", ROOT_PWM_DEVICES, iPWMNumber, PWM_DUTY_CYCLE);
         if ((fOut = fopen(szAccessPath, "w")) == NULL)
         {
                 fprintf(stderr, "ERROR : PWMSetDutyCycle() --> call to fopen(%s, ..)\n", szAccessPath);

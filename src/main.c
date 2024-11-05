@@ -24,14 +24,14 @@ int main(int argc, char *argv[])
     {
         int duty_cycle = (PERIOD_PWM / 100) * velocity;
 
-        GPIOInit(17);
-        GPIOSetDir(17, 0);
-        GPIOWrite(17, sens);
+        GPIOInit(18);
+        GPIOSetDir(18, 0);
+        GPIOWrite(18, sens);
 
         PWMInit(0);
-        PWMSetPeriod(1, PERIOD_PWM);
-        PWMSetDutyCycle(1, duty_cycle);
-        PWMSetEnable(1);
+        PWMSetPeriod(0, PERIOD_PWM);
+        PWMSetDutyCycle(0, duty_cycle);
+        PWMSetEnable(0);
     }
 
     return 0;
