@@ -99,9 +99,9 @@ def startCProgram(target):
     sens = 1 if target < 0 else 0
     velocity = 0
     if target == -2 or target == 2:
-        velocity = 80
+        velocity = 60
     elif target == -1 or target == 1:
-        velocity = 40
+        velocity = 30
     print("Lance programme C avec ", velocity, sens)
     subprocess.run(["../build/ASEAI_PI", str(velocity), str(sens)])
 
