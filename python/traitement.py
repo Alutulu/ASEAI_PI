@@ -49,9 +49,7 @@ class Traitement():
     def update_target(visage, valeurs_zones, seuils_x):
         nb_seuils = len(seuils_x)
         ind_zone = 0
-        print(visage.x, seuils_x[ind_zone])
         while visage.x >= seuils_x[ind_zone] and ind_zone < nb_seuils:
-            print(visage.x, seuils_x[ind_zone])
             ind_zone += 1
             if ind_zone >= nb_seuils or visage.x < seuils_x[ind_zone]:
                 break
