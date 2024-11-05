@@ -16,6 +16,7 @@
 int PWMInit(int);              // init a GPIO pin using the corresponding export file
 int PWMDeInit(int);            // deinitialize a GPIO pin using the corresponding file
 int PWMSetEnable(int);         // set data direction (0 --> out, 1 --> in)
+int PWMSetDisable(int);        // set data direction (0 --> out, 1 --> in)
 int PWMSetPeriod(int, int);    // set data direction (0 --> out, 1 --> in)
 int PWMSetDutyCycle(int, int); // set data direction (0 --> out, 1 --> in)
 
