@@ -36,14 +36,23 @@ class Traitement():
         nb_zones = len(zones) + 1
         valeurs_zones = range(int(-(nb_zones -1) / 2), int(1+ (nb_zones -1) / 2))
         return valeurs_zones
-
-    def drawSeuils(image, zones):
+    
+    def getSeuilsX(image, zones):
         height, width = image.shape[0], image.shape[1]
-        seuils_x = [int((width / 100)*zones[i]) for i in range(len(zones))]
+        return [int((width / 100)*zones[i]) for i in range(len(zones))]
+
+    def drawSeuils(image, seuils_x):
+        height, width = image.shape[0], image.shape[1]
         for seuil in seuils_x:
             cv.line(image,(seuil,0),(seuil,height-1),(255,0,0),3)
 
-    def update_target(visage, valeurs_zones, seuils):
-        nb_zones = len(valeurs_zones)
+    def update_target(visage, valeurs_zones, seuils_x):
+        nb_seuils = len(seuils_x)
         ind_zone = 0
-        # TODO trouver la valeur_sone qui correspond aux coords du visage
+        print(visage.x, seuils_x[ind_zone])
+        while visage.x >= seuils_x[ind_zone] and ind_zone < nb_seuils:
+            print(visage.x, seuils_x[ind_zone])
+            ind_zone += 1
+            if ind_zone >= nb_seuils or visage.x < seuils_x[ind_zone]:
+                break
+        return valeurs_zones[ind_zone]
