@@ -78,6 +78,27 @@ int PWMSetEnable(int iPWMNumber)
         return 0;
 }
 
+/*&&&&&&&&&&&&&&&&&&*/
+/* set the data direction for a given GPIO number*/
+/*&&&&&&&&&&&&&&&&&&*/
+int PWMSetDisable(int iPWMNumber)
+{
+        char szAccessPath[STR_LEN];
+        FILE *fOut;
+        /* build the path to the file*/
+        sprintf(szAccessPath, "%s/pwm%d/%s", ROOT_PWM_DEVICES, START_PIN + iPWMNumber, PWM_ENABLE);
+        if ((fOut = fopen(szAccessPath, "w")) == NULL)
+        {
+                fprintf(stderr, "ERROR : PWMSetEnable() --> call to fopen(%s, ..)\n", szAccessPath);
+                fprintf(stderr, "    error code %d (%s)\n", errno, (char *)(strerror(errno)));
+                return (-errno);
+        }
+        fprintf(fOut, "0");
+        fclose(fOut);
+        /* ok*/
+        return 0;
+}
+
 int PWMSetPeriod(int iPWMNumber, int iPeriod)
 {
         char szAccessPath[STR_LEN];
