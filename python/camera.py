@@ -73,11 +73,11 @@ def main():
                 target = None
             sample_visages = []
             nb_iter = 0
-            startCProgram(zones)
         if old_visage is not None:
             print("Dessin du cercle")
             old_visage.drawCenter(im)
             target = Traitement.update_target(old_visage, valeurs_zones, seuils_x)
+            startCProgram(target)
         Traitement.drawSeuils(im, seuils_x)
         print("Target :", target)
         # Write the frame to the output file
@@ -95,7 +95,7 @@ def main():
     # out.release()
     cv.destroyAllWindows()
 
-def startCProgram(zone):
+def startCProgram(target):
     sens = 0 if zone < 0 else 1
     velocity = 0
     if zone == -2 or zone == 2:
