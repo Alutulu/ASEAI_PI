@@ -60,7 +60,6 @@ def main():
             seuils_x = Traitement.getSeuilsX(im, zones)
         res = Traitement.findFace(im, face_detector)
         nb_iter += 1
-        print("Nombre iter :", nb_iter)
         if res is not None:
             new_face = Visage(*res)
             sample_visages.append(new_face)
@@ -74,7 +73,6 @@ def main():
             sample_visages = []
             nb_iter = 0
         if old_visage is not None:
-            print("Dessin du cercle")
             old_visage.drawCenter(im)
             target = Traitement.update_target(old_visage, valeurs_zones, seuils_x)
             startCProgram(target)
@@ -102,6 +100,7 @@ def startCProgram(target):
         velocity = 80
     elif target == -1 or target == 1:
         velocity = 40
+    print(velocity, sens)
     subprocess.run(["../build/ASEAI_PI", str(velocity), str(sens)])
 
 if __name__ == "__main__":
