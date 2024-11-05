@@ -10,23 +10,23 @@
 
 int main(int argc, char *argv[])
 {
-    printf("compilé : %d arguments\n", argc);
-
     int velocity = atoi(argv[1]);
     int sens = atoi(argv[2]);
 
     if (velocity == 0)
     {
+        printf("Velocite a zero\n");
         PWMInit(0);
         PWMSetDisable(0);
     }
     else
     {
         int duty_cycle = (PERIOD_PWM / 100) * velocity;
+        printf("duty cycle %d period %d\n", duty_cycle, PERIOD_PWM);
 
-        GPIOInit(18);
-        GPIOSetDir(18, 0);
-        GPIOWrite(18, sens);
+        GPIOInit(24);
+        GPIOSetDir(24, 0);
+        GPIOWrite(24, sens);
 
         PWMInit(0);
         PWMSetPeriod(0, PERIOD_PWM);
