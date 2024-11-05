@@ -42,3 +42,7 @@ Attention, appremment : `dtoverlay=pwm-2chan,pin=12,func=4,pin2=13,func2=4`
 sudo apt install -y python3-libcamera python3-kms++ libcap-dev
 sudo apt install -y python3-opencv python3-picamera2
 ```
+
+## Branchements
+PIN pour PWM = 32 sur le bornier
+PIN pour GPIO = 18 sur le bornier
