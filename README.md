@@ -1,4 +1,7 @@
 # ASEAI_PI
+
+Projet étudiant : programmation sur microcontrôleur en C pour suivre un visage humain à l'aide d'une caméra et d'un moteur commandé en PWM.
+
 UV ASEAI à l'IMT NORD EUROPE
 
 ## Motor control
